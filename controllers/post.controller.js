@@ -28,9 +28,7 @@ exports.getAllPosts = async(req, res)=>{
 exports.getPostById = async(req, res)=>{
 
     const {id} = req.params
-    
-    const post = await Post.find({id})
-
+    const post = await Post.find({_id: id})
     res.json({
         post
     })

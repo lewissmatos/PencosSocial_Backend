@@ -28,3 +28,12 @@ exports.getAllUsers = async(req = request, res = response) => {
         user
     });
 }
+exports.getUserById = async (req, res)=>{
+    const {id} = req.params
+
+    const user = await User.find({_id: id})
+
+    res.json({
+        user
+    })
+}

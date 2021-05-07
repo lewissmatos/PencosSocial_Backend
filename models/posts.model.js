@@ -3,7 +3,8 @@ const User = require('./users.model')
 
 const PostSchema = Schema({
     user:{
-        type: String,
+        type: Schema.Types.ObjectId,
+        ref: 'User',
         required: true
     },
     header:{
@@ -21,7 +22,11 @@ const PostSchema = Schema({
     img:{
         type: String,
         default: false
-    }
+    },
+    like:[{
+        type: Schema.Types.ObjectId,
+        ref: 'User',
+    }],
 })
 
 
