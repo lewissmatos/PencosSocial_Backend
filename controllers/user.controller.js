@@ -20,6 +20,7 @@ exports.createUser = async(req , res ) => {
         user
     })
 }
+
 exports.getAllUsers = async(req = request, res = response) => {
 
     const user = await User.find();
@@ -28,6 +29,7 @@ exports.getAllUsers = async(req = request, res = response) => {
         user
     });
 }
+
 exports.getUserById = async (req, res)=>{
     const {id} = req.params
 
@@ -36,4 +38,33 @@ exports.getUserById = async (req, res)=>{
     res.json({
         user
     })
+}
+
+exports.deteleUserById = async(req, res)=>{
+    const {id} = req.params
+
+    const currentUser = req.userName
+
+    const updatedUser = await User.findByIdAndUpdate({_id: id}, {status: false}, {new: true})
+
+    res.json({
+        updatedUser,
+        msg: `Eliminado por ${currentUser.userName}`
+    })
+}
+
+exports.editUserById = async(req, res)=>{
+    const {id} = req.params;
+    const {_id, pass, ...rest} = req.body;
+
+    //Validar contra Base de datos
+    if (pass) {
+        //Encriptacionde la contraseña     
+        const salt = bcrypt.genSaltSync();
+        rest.pass = bcrypt.hashSync(pass, salt);
+    }
+    //Actualizar informacion del usuario
+    const user = await User.findByIdAndUpdate({_id: id}, rest, {new: true});
+
+    res.json(user); 
 }

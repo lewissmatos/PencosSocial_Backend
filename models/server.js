@@ -5,6 +5,7 @@ require('colors')
 const usersRoute =require('../routes/users.routes')
 const postsRoute =require('../routes/posts.routes')
 const commentsRoute =require('../routes/comments.routes')
+const authRoute =require('../routes/auth.routes')
 
 const { dbConnection } = require('../database/db.config')
 
@@ -17,6 +18,7 @@ class Server {
         this.usersPath = '/api/users'
         this.postsPath = '/api/posts'
         this.commentsPath = '/api/comments'
+        this.authPath = '/api/auth'
         
         this.dbConnection()
 
@@ -38,6 +40,8 @@ class Server {
         this.app.use(this.usersPath, usersRoute );
         this.app.use(this.postsPath, postsRoute );
         this.app.use(this.commentsPath, commentsRoute );
+
+        this.app.use(this.authPath, authRoute );
     }
 
     middlewares(){
