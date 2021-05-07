@@ -23,7 +23,7 @@ exports.createUser = async(req , res ) => {
 
 exports.getAllUsers = async(req = request, res = response) => {
 
-    const user = await User.find();
+    const user = await User.find({status: true});
     
     res.json({
         user

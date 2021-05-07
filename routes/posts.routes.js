@@ -1,6 +1,6 @@
 const {Router} = require('express')
 const { check } = require('express-validator');
-const { createPost, getAllPosts, getPostById } = require('../controllers/post.controller');
+const { createPost, getAllPosts, getPostById, editPostById, deletePostById } = require('../controllers/post.controller');
 const { _idExists } = require('../middlewares/validateID.mdw');
 
 const {validations}=require('../middlewares/validations')
@@ -19,5 +19,14 @@ router.get('/:id', [
 
 router.post('/', createPost)
 
+router.put('/:id',[
+    check('id').isMongoId(),
+    validations
+], editPostById)
+
+router.put('/:id',[
+    check('id').isMongoId(),
+    validations
+], deletePostById )
 
 module.exports = router
