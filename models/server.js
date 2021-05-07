@@ -1,8 +1,9 @@
 const express = require('express')
 const cors = require('cors')
+require('colors')
 
 const usersRoute =require('../routes/users.routes')
-require('colors')
+const postsRoute =require('../routes/posts.routes')
 
 const { dbConnection } = require('../database/db.config')
 
@@ -13,13 +14,13 @@ class Server {
         this.app = express()
         this.port = process.env.PORT
         this.usersPath = '/api/users'
+        this.postsPath = '/api/posts'
         
         this.dbConnection()
 
         this.middlewares()
 
         this.routes()
-
 
     }
 
@@ -33,11 +34,12 @@ class Server {
 
     routes(){
         this.app.use(this.usersPath, usersRoute );
+        this.app.use(this.postsPath, postsRoute );
     }
 
     middlewares(){
         this.app.use(   cors()  );
-        //Lecturay prseo del body
+        //Lectura y parseo del body
         this.app.use(  express.json()  );
     }
 }

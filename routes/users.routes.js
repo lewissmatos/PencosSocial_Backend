@@ -1,8 +1,9 @@
 const {Router} = require('express')
 const { check } = require('express-validator');
 
-const { userExists } = require('../middlewares/validateUser.mdw');
 const {validations}=require('../middlewares/validations')
+
+const { userExists } = require('../middlewares/validateUser.mdw');
 const { getAllUsers, createUser } = require('../controllers/user.controller')
 
 const router = Router()
