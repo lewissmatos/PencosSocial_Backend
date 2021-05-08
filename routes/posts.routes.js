@@ -24,7 +24,7 @@ router.put('/:id',[
     validations
 ], editPostById)
 
-router.put('/:id',[
+router.delete('/:id',[
     check('id').isMongoId(),
     validations
 ], deletePostById )

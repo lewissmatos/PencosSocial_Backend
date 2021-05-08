@@ -23,4 +23,5 @@ router.put('/:id',[
     check('id').isMongoId(),
     validations
 ], editUserById)
+
 module.exports = router
