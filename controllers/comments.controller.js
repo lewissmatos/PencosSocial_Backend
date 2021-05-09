@@ -17,7 +17,7 @@ exports.getCommentById = async(req, res)=>{
 
     const {id} = req.params
     
-    const comment = await Comment.find({_id: id})
+    const comment = await Comment.findOne({_id: id})
 
     res.json({
         comment,
@@ -28,8 +28,7 @@ exports.getCommentById = async(req, res)=>{
 exports.getAllCommentsByPostId = async(req, res)=>{
     const {id} = req.params
     
-    
-    const comments = await Comment.find({status: true}, {post: id}, )
+    const comments = await Comment.find({$and: [{status: true}, {post: id}]} )
 
     res.json({
         comments
@@ -56,4 +55,16 @@ exports.deleteCommentById = async(req, res)=>{
     res.json({
         deletedcomment
     })
+}
+
+exports.getCommentByPostId = async (req, res) => {
+    const {id, idcom}=req.params
+
+    //const comment = Comment.findOne({_id: idcom}, {post: id})
+    const comment = await Comment.findOne({$and: [{_id: idcom}, {post: id}]})
+
+    res.json({
+        comment
+    })
+
 }

@@ -15,10 +15,10 @@ class Server {
         
         this.app = express()
         this.port = process.env.PORT
-        this.usersPath = '/api/users'
-        this.postsPath = '/api/posts'
-        this.commentsPath = '/api/comments'
-        this.authPath = '/api/auth'
+        this.usersPath = '/api/v1/users'
+        this.postsPath = '/api/v1/posts'
+        this.commentsPath = '/api/v1/comments'
+        this.authPath = '/api/v1/auth'
         
         this.dbConnection()
 

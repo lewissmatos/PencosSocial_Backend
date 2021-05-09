@@ -23,6 +23,8 @@ const CommentSchema = Schema({
         type: Boolean,
         default: true
     }
+}, {
+    versionKey: false
 })
 
 module.exports = model('Comment', CommentSchema)

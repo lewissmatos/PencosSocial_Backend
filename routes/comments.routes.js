@@ -1,5 +1,9 @@
 const {Router}=require('express')
-const { createComment, getAllCommentsByPostId, getCommentById, editCommentById, deleteCommentById } = require('../controllers/comments.controller')
+const { createComment, 
+        getAllCommentsByPostId, 
+        getCommentById, 
+        editCommentById, 
+        deleteCommentById } = require('../controllers/comments.controller')
 
 const router= Router()
 

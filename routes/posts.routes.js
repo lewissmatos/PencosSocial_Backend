@@ -1,5 +1,6 @@
 const {Router} = require('express')
 const { check } = require('express-validator');
+const { getAllCommentsByPostId, getCommentByPostId } = require('../controllers/comments.controller');
 const { createPost, getAllPosts, getPostById, editPostById, deletePostById } = require('../controllers/post.controller');
 const { _idExists } = require('../middlewares/validateID.mdw');
 
@@ -28,5 +29,15 @@ router.delete('/:id',[
     check('id').isMongoId(),
     validations
 ], deletePostById )
+
+router.get('/:id/comments',[
+    check('id').isMongoId(),
+    validations
+], getAllCommentsByPostId )
+
+router.get('/:id/comments/:idcom',[
+    check('id').isMongoId(),
+    validations
+], getCommentByPostId )
 
 module.exports = router
